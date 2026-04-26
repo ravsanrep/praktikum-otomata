@@ -1,7 +1,9 @@
 import tkinter as tk
+from tkinter import ttk
+import time
 
 # =========================
-# FSM TRANSITION
+# FSM LOGIC
 # =========================
 def next_state(state, char):
     if state == "S":
@@ -10,140 +12,153 @@ def next_state(state, char):
         return "C" if char == "0" else "B"
     elif state == "B":
         return "A" if char == "0" else "B"
-    elif state == "C":
-        return "C"
-
+    return "C"
 
 # =========================
-# ANIMATION
+# SIMULATION
 # =========================
 def run_simulation():
     s = entry.get()
 
-    # validasi
     if not all(c in "01" for c in s):
-        result_label.config(text="❌ Input hanya 0 dan 1!", fg="red")
+        status_label.config(text="Input hanya 0/1", foreground="red")
         return
-    
 
-    global path
-    path = ["S"]
     state = "S"
+    path = ["S"]
 
-    for char in s:
-        state = next_state(state, char)
+    for c in s:
+        state = next_state(state, c)
         path.append(state)
 
-    step_text.set(" → ".join(path))
+    step_label.config(text=" → ".join(path))
 
-    # simpan history
-    final = path[-1]
-    history.insert(tk.END, f"{s} → {final} → {'ACCEPT' if final == 'B' else 'REJECT'}")
+    if state == "B":
+        status_label.config(text="DITERIMA ✅", foreground="#27ae60")
+        result = "DITERIMA"
+    else:
+        status_label.config(text="DITOLAK ❌", foreground="#e74c3c")
+        result = "DITOLAK"
 
-    animate(0)
-
-
-def animate(i):
-    if i >= len(path):
-        final = path[-1]
-        if final == "B":
-            result_label.config(text="DITERIMA ✅", fg="green")
-        else:
-            result_label.config(text="DITOLAK ❌", fg="red")
-        return
-
-    update_visual(path[i])
-    root.after(700, lambda: animate(i + 1))
-
+    tree.insert("", "end", values=(s, result, state, time.strftime("%H:%M:%S")))
 
 # =========================
-# VISUAL UPDATE
-# =========================
-def update_visual(state):
-    for s in states:
-        canvas.itemconfig(states[s], fill="lightgray")
-
-    canvas.itemconfig(states[state], fill="lightgreen")
-
-
-# =========================
-# UI
+# ROOT
 # =========================
 root = tk.Tk()
 root.title("FSM Simulation")
-root.geometry("700x500")
+root.geometry("1100x650")
+root.configure(bg="#eef1f5")
 
-tk.Label(root, text="Input String (0 & 1):").pack()
+# STYLE
+style = ttk.Style()
+style.theme_use("clam")
 
-entry = tk.Entry(root, width=30)
-entry.pack()
+style.configure("TButton",
+    font=("Segoe UI", 10),
+    padding=8
+)
 
-tk.Button(root, text="Start Simulation", command=run_simulation).pack()
+style.configure("Blue.TButton",
+    background="#2d6cdf",
+    foreground="white"
+)
 
-step_text = tk.StringVar()
-tk.Label(root, textvariable=step_text).pack()
+style.configure("Gray.TButton",
+    background="#dcdde1"
+)
 
-result_label = tk.Label(root, text="", font=("Arial", 12))
-result_label.pack()
+style.configure("Red.TButton",
+    background="#ff7675"
+)
+
+style.configure("Card.TFrame",
+    background="white",
+    relief="flat"
+)
 
 # =========================
-# CANVAS (FSM DIAGRAM)
+# LEFT PANEL
 # =========================
-canvas = tk.Canvas(root, width=650, height=300)
-canvas.pack()
+left = ttk.Frame(root, style="Card.TFrame", padding=15)
+left.place(x=15, y=15, width=360, height=600)
 
-# =========================
+ttk.Label(left, text="INPUT STRING", font=("Segoe UI", 11, "bold")).pack(anchor="w")
+
+entry = ttk.Entry(left, font=("Segoe UI", 12))
+entry.pack(fill="x", pady=10)
+
+btn_frame = ttk.Frame(left)
+btn_frame.pack(pady=5)
+
+ttk.Button(btn_frame, text="▶ Start", style="Blue.TButton", command=run_simulation).grid(row=0, column=0, padx=3)
+ttk.Button(btn_frame, text="⏸ Pause", style="Gray.TButton").grid(row=0, column=1, padx=3)
+ttk.Button(btn_frame, text="⏹ Reset", style="Red.TButton").grid(row=0, column=2, padx=3)
+
+# DETAIL
+ttk.Label(left, text="DETAIL", font=("Segoe UI", 10, "bold")).pack(anchor="w", pady=10)
+
+status_label = ttk.Label(left, text="-", font=("Segoe UI", 11))
+status_label.pack(anchor="w")
+
 # HISTORY
-# =========================
-tk.Label(root, text="History").pack()
+ttk.Label(left, text="HISTORY", font=("Segoe UI", 10, "bold")).pack(anchor="w", pady=10)
 
-history = tk.Listbox(root, height=8)
-history.pack(fill="both", expand=True)
+tree = ttk.Treeview(left, columns=("Input","Result","State","Time"), show="headings", height=10)
 
-# STATE POSITIONS
-states = {
-    "S": canvas.create_oval(50, 120, 100, 170, fill="lightgray"),
-    "A": canvas.create_oval(200, 40, 250, 90, fill="lightgray"),
-    "B": canvas.create_oval(200, 200, 250, 250, fill="lightgray"),
-    "C": canvas.create_oval(450, 120, 500, 170, fill="lightgray"),
-}
+for col in ("Input","Result","State","Time"):
+    tree.heading(col, text=col)
 
-# LABEL STATE
-canvas.create_text(75, 145, text="S")
-canvas.create_text(225, 65, text="A")
-canvas.create_text(225, 225, text="B")
-canvas.create_text(475, 145, text="C")
+tree.pack(fill="both", expand=True)
 
 # =========================
-# DRAW ARROWS
+# RIGHT PANEL
 # =========================
+right = ttk.Frame(root, style="Card.TFrame", padding=15)
+right.place(x=390, y=15, width=730, height=600)
 
-# S → A (0)
-canvas.create_line(100, 140, 200, 65, arrow=tk.LAST)
-canvas.create_text(150, 90, text="0")
+ttk.Label(right, text="FINITE STATE MACHINE", font=("Segoe UI", 11, "bold")).pack()
 
-# S → B (1)
-canvas.create_line(100, 150, 200, 225, arrow=tk.LAST)
-canvas.create_text(150, 190, text="1")
+canvas = tk.Canvas(right, width=700, height=350, bg="white", highlightthickness=0)
+canvas.pack(pady=10)
 
-# A → B (1)
-canvas.create_line(225, 90, 225, 200, arrow=tk.LAST)
-canvas.create_text(240, 145, text="1")
+# STATES
+S = canvas.create_oval(50, 150, 100, 200, fill="#ecf0f1")
+A = canvas.create_oval(250, 70, 300, 120, fill="#ecf0f1")
+B = canvas.create_oval(250, 250, 300, 300, fill="#2ecc71")
+C = canvas.create_oval(500, 150, 550, 200, fill="#ff7675")
 
-# B → A (0)
-canvas.create_line(210, 200, 210, 90, arrow=tk.LAST)
-canvas.create_text(195, 145, text="0")
+canvas.create_text(75, 175, text="S", font=("Segoe UI", 10, "bold"))
+canvas.create_text(275, 95, text="A", font=("Segoe UI", 10, "bold"))
+canvas.create_text(275, 275, text="B", font=("Segoe UI", 10, "bold"))
+canvas.create_text(525, 175, text="C", font=("Segoe UI", 10, "bold"))
 
-# A → C (0)
-canvas.create_line(250, 65, 450, 140, arrow=tk.LAST)
-canvas.create_text(350, 100, text="0")
+# ARROWS
+canvas.create_line(100,170,250,95,arrow=tk.LAST)
+canvas.create_text(180,120,text="0")
 
-# B loop (1)
-canvas.create_arc(190, 210, 260, 270, start=140, extent=270, style=tk.ARC)
-canvas.create_text(230, 280, text="1")
+canvas.create_line(100,180,250,275,arrow=tk.LAST)
+canvas.create_text(180,240,text="1")
 
-# C loop (0,1)
-canvas.create_arc(440, 130, 510, 190, start=140, extent=270, style=tk.ARC)
-canvas.create_text(480, 200, text="0,1")
+canvas.create_line(275,120,275,250,arrow=tk.LAST)
+canvas.create_text(290,190,text="1")
+
+canvas.create_line(260,250,260,120,arrow=tk.LAST)
+canvas.create_text(240,190,text="0")
+
+canvas.create_line(300,95,500,170,arrow=tk.LAST)
+canvas.create_text(400,130,text="0")
+
+# LOOP B
+canvas.create_arc(230,260,330,340,start=140, extent=280,style=tk.ARC,width=2)
+canvas.create_text(275,330,text="1")
+
+# LOOP C
+canvas.create_arc(480,160,580,240,start=140, extent=280,style=tk.ARC,width=2)
+canvas.create_text(530,260,text="0,1")
+
+# STEP
+step_label = ttk.Label(right, text="", font=("Segoe UI", 10))
+step_label.pack()
 
 root.mainloop()
