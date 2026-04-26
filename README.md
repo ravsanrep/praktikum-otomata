@@ -125,6 +125,16 @@ if (y > 10) {
 
 ---
 
+## 📸 Tampilan Aplikasi
+
+### GUI (Tkinter)
+![UI Screenshot](assets/ui.png)
+
+### CLI
+![CLI Screenshot](assets/cli.png)
+
+---
+
 ## 📌 Kesimpulan
 
 Program ini dibuat untuk memenuhi tugas praktikum mengenai **tokenisasi dan klasifikasi string dalam kode program**, dengan fokus pada kesederhanaan dan kejelasan algoritma.
