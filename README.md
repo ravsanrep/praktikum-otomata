@@ -1,5 +1,3 @@
-# NO.1 🧠 Simple Tokenizer Program
-
 ## 👥 Team
 
 | Nama               | NRP        |
@@ -8,6 +6,12 @@
 | Abdurrahman Arrafi Ravsan Zarnadi     | 5025241241 |
 | Antonius Andy Martono | 5025241191 |
 
+
+
+---
+
+
+# NO.1 🧠 Simple Tokenizer Program
 
 ---
 
