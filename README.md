@@ -1,11 +1,13 @@
-# 🧠 Simple Tokenizer Program
+# NO.1 🧠 Simple Tokenizer Program
 
+## 👥 Team
 
-## 👤 Team
+| Nama               | NRP        |
+| ------------------ | ---------- |
+| Muhammad Sayyidil Anam | 5025241267 |
+| Abdurrahman Arrafi Ravsan Zarnadi     | 5025241241 |
+| Antonius Andy Martono | 5025241191 |
 
-| Muhammad Sayyidil Anam 5025241267 |
-| Abdurrahman Arrafi Ravsan Zarnadi 5025241241 |
-| Antonius Andy Martono 5025241191 |
 
 ---
 
@@ -123,9 +125,6 @@ if (y > 10) {
 
 ---
 
-
 ## 📌 Catatan
 
 Program ini dibuat untuk memenuhi tugas praktikum mengenai **tokenisasi dan klasifikasi string dalam kode program**, dengan fokus pada kesederhanaan dan kejelasan algoritma.
-
----
