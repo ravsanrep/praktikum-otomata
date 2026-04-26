@@ -138,3 +138,150 @@ if (y > 10) {
 ## 📌 Kesimpulan
 
 Program ini dibuat untuk memenuhi tugas praktikum mengenai **tokenisasi dan klasifikasi string dalam kode program**, dengan fokus pada kesederhanaan dan kejelasan algoritma.
+
+
+# NO.2 🧠 FSM Simulation Program (Python)
+
+Program ini merupakan implementasi **Finite State Machine (FSM)** untuk menentukan apakah suatu string merupakan anggota dari bahasa:
+
+```
+L = { x ∈ (0 + 1)* | 
+      karakter terakhir adalah 1 
+      dan tidak mengandung substring "00" }
+```
+
+Program dibuat menggunakan **Python** dengan antarmuka grafis (**GUI**) berbasis Tkinter yang interaktif dan mudah digunakan.
+
+---
+
+## 📌 Fitur Utama
+
+* 🔍 Validasi string hanya berisi `0` dan `1`
+* 🧩 Simulasi FSM sesuai diagram state
+* 🎬 Animasi perpindahan state (step-by-step)
+* 🔦 Highlight state aktif secara visual
+* 📊 Menampilkan jalur state (state path)
+* 🖥️ GUI interaktif (Tkinter)
+* 📝 Riwayat input (history) beserta hasil
+
+---
+
+## 🏗️ Struktur Project
+
+```
+project/
+│
+├── fsm.py              # Logic FSM
+├── ui_simulation.py    # GUI + animasi
+└── README.md
+```
+
+---
+
+## ⚙️ Cara Menjalankan Program
+
+### 1. Pastikan Python sudah terinstall
+
+Cek dengan:
+
+```
+python --version
+```
+
+---
+
+### 2. Jalankan program
+
+```
+python ui_simulation.py
+```
+
+---
+
+## 🧪 Contoh Input & Output
+
+| Input  | Hasil      | Penjelasan        |
+| ------ | ---------- | ----------------- |
+| `1`    | ✅ Diterima | Berakhir dengan 1 |
+| `101`  | ✅ Diterima | Tidak ada "00"    |
+| `1001` | ❌ Ditolak  | Mengandung "00"   |
+| `10`   | ❌ Ditolak  | Berakhir dengan 0 |
+| `111`  | ✅ Diterima | Valid             |
+
+---
+
+## 🧠 Penjelasan FSM
+
+### State yang digunakan:
+
+* **S** : Start state
+* **A** : Terakhir membaca `0`
+* **B** : Terakhir membaca `1` (**Accept State**)
+* **C** : Trap state (mengandung "00")
+
+---
+
+### Transisi:
+
+| Dari | Input | Ke |
+| ---- | ----- | -- |
+| S    | 0     | A  |
+| S    | 1     | B  |
+| A    | 0     | C  |
+| A    | 1     | B  |
+| B    | 0     | A  |
+| B    | 1     | B  |
+| C    | 0/1   | C  |
+
+---
+
+## 🎬 Cara Kerja Program
+
+1. User memasukkan string
+2. Program memproses karakter satu per satu
+3. FSM berpindah state sesuai input
+4. State aktif ditampilkan secara visual
+5. Jalur state ditampilkan dalam bentuk:
+
+   ```
+   S → A → B → B
+   ```
+6. Hasil akhir:
+
+   * **DITERIMA** jika berakhir di state B
+   * **DITOLAK** selain itu
+
+---
+
+## 📊 History
+
+Setiap input akan disimpan dengan format:
+
+```
+input → final_state → result
+```
+
+Contoh:
+
+```
+101 → B → DITERIMA
+100 → C → DITOLAK
+```
+
+---
+
+## 🚀 Pengembangan Lanjutan
+
+Beberapa pengembangan yang dapat dilakukan:
+
+* ⏯️ Tombol Pause / Resume animasi
+* ⏩ Pengaturan kecepatan simulasi
+* 🔦 Highlight jalur panah (edge highlighting)
+* 💾 Export history ke file
+* 🎨 UI lebih modern (PyQt / Web-based)
+
+---
+
+## 📌 Kesimpulan
+
+Program ini berhasil mengimplementasikan konsep **Finite State Machine** untuk mengenali pola string tertentu secara visual dan interaktif. Dengan adanya animasi dan GUI, pengguna dapat memahami alur FSM dengan lebih mudah.
