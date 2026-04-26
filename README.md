@@ -1,5 +1,13 @@
 # 🧠 Simple Tokenizer Program
 
+
+## 👤 Team
+Muhammad Sayyidil Anam 5025241267
+Abdurrahman Arrafi Ravsan Zarnadi 5025241241
+Antonius Andy Martono 5025241191
+
+---
+
 Program ini merupakan implementasi sederhana dari **lexical analyzer (tokenizer)** yang dapat membaca input berupa kode program, kemudian memecahnya menjadi token-token dan mengelompokkannya berdasarkan kategori tertentu.
 
 ---
@@ -114,25 +122,9 @@ if (y > 10) {
 
 ---
 
-## 🚀 Pengembangan Lanjutan
-
-Beberapa ide pengembangan:
-
-* 🎨 Syntax highlighting
-* 📈 Menampilkan jumlah masing-masing token
-* 💾 Export hasil ke file `.txt`
-* 🌐 Versi web (HTML + JavaScript)
-* 🔢 Support angka desimal dan tipe data lain
-
----
 
 ## 📌 Catatan
 
 Program ini dibuat untuk memenuhi tugas praktikum mengenai **tokenisasi dan klasifikasi string dalam kode program**, dengan fokus pada kesederhanaan dan kejelasan algoritma.
 
 ---
-
-## 👤 Team
-Muhammad Sayyidil Anam 5025241267
-Abdurrahman Arrafi Ravsan Zarnadi 5025241241
-Antonius Andy Martono 5025241191
