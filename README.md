@@ -163,8 +163,6 @@ Program dibuat menggunakan **Python** dengan antarmuka grafis (**GUI**) berbasis
 
 * 🔍 Validasi string hanya berisi `0` dan `1`
 * 🧩 Simulasi FSM sesuai diagram state
-* 🎬 Animasi perpindahan state (step-by-step)
-* 🔦 Highlight state aktif secara visual
 * 📊 Menampilkan jalur state (state path)
 * 🖥️ GUI interaktif (Tkinter)
 * 📝 Riwayat input (history) beserta hasil
@@ -177,7 +175,7 @@ Program dibuat menggunakan **Python** dengan antarmuka grafis (**GUI**) berbasis
 project/
 │
 ├── fsm.py              # Logic FSM
-├── ui_simulation.py    # GUI + animasi
+├── ui.py    # GUI + animasi
 └── README.md
 ```
 
@@ -198,7 +196,7 @@ python --version
 ### 2. Jalankan program
 
 ```
-python ui_simulation.py
+python ui.py
 ```
 
 ---
