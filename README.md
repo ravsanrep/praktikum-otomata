@@ -125,6 +125,6 @@ if (y > 10) {
 
 ---
 
-## 📌 Catatan
+## 📌 Kesimpulan
 
 Program ini dibuat untuk memenuhi tugas praktikum mengenai **tokenisasi dan klasifikasi string dalam kode program**, dengan fokus pada kesederhanaan dan kejelasan algoritma.
