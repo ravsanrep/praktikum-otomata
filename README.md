@@ -3,9 +3,9 @@
 
 ## 👤 Team
 
-Muhammad Sayyidil Anam 5025241267
-Abdurrahman Arrafi Ravsan Zarnadi 5025241241
-Antonius Andy Martono 5025241191
+| Muhammad Sayyidil Anam 5025241267 |
+| Abdurrahman Arrafi Ravsan Zarnadi 5025241241 |
+| Antonius Andy Martono 5025241191 |
 
 ---
 
