@@ -139,6 +139,7 @@ if (y > 10) {
 
 Program ini dibuat untuk memenuhi tugas praktikum mengenai **tokenisasi dan klasifikasi string dalam kode program**, dengan fokus pada kesederhanaan dan kejelasan algoritma.
 
+---
 
 # NO.2 🧠 FSM Simulation Program (Python)
 
@@ -270,15 +271,10 @@ Contoh:
 
 ---
 
-## 🚀 Pengembangan Lanjutan
+## 📸 Tampilan Aplikasi
 
-Beberapa pengembangan yang dapat dilakukan:
-
-* ⏯️ Tombol Pause / Resume animasi
-* ⏩ Pengaturan kecepatan simulasi
-* 🔦 Highlight jalur panah (edge highlighting)
-* 💾 Export history ke file
-* 🎨 UI lebih modern (PyQt / Web-based)
+### GUI (Tkinter)
+![UI Screenshot](assets/fsm.png)
 
 ---
 
