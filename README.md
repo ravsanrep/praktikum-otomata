@@ -175,7 +175,7 @@ Program dibuat menggunakan **Python** dengan antarmuka grafis (**GUI**) berbasis
 project/
 │
 ├── fsm.py              # Logic FSM
-├── ui.py    # GUI + animasi
+├── ui.py    # GUI
 └── README.md
 ```
 
