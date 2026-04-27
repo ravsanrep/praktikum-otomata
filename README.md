@@ -282,4 +282,4 @@ Contoh:
 
 ## 📌 Kesimpulan
 
-Program ini berhasil mengimplementasikan konsep **Finite State Machine** untuk mengenali pola string tertentu secara visual dan interaktif. Dengan adanya animasi dan GUI, pengguna dapat memahami alur FSM dengan lebih mudah.
+Program ini berhasil mengimplementasikan konsep **Finite State Machine** untuk mengenali pola string tertentu secara visual dan interaktif. Dengan adanya GUI, pengguna dapat memahami alur FSM dengan lebih mudah.
